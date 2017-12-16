@@ -10,5 +10,5 @@ rvm:
 install: 
   - bundle install
 script: 
-  - bundle exec rspec spec
+  - bundle exec cucumber
   - CODECLIMATE_REPO_TOKEN=${CODECLIMATE_LAB42LITERATE_TOKEN} bundle exec codeclimate-test-reporter
