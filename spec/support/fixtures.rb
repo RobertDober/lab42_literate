@@ -1,0 +1,8 @@
+module Support
+  module Fixtures
+    def fixtures_path *segments
+      interm = File.join(PROJECT_ROOT, 'spec', 'fixtures', *segments.flatten)
+      interm.sub(%r{(?:\.md)?\z}, '.md')
+    end
+  end
+end
