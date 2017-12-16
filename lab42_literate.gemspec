@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rspec', '~> 3.7'
 
   s.add_development_dependency 'cucumber', '~> 3.1' 
-  s.add_development_dependency 'aruba', '~> 0.14.3' 
+  s.add_development_dependency 'rspec-expectations', '~> 3.7' 
   s.add_development_dependency 'pry', '~> 0.11'
   s.add_development_dependency 'pry-byebug', '~> 3.5'
 

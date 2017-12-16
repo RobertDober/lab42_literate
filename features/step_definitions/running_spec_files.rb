@@ -6,6 +6,7 @@ end
 
 When("I run it") do
   @output = %x{bundle exec rspec --no-color #{@the_spec_file}}
+  @status = $?
 end
 
 When("I run the spec_file") do
@@ -13,8 +14,8 @@ When("I run the spec_file") do
 end
 
 Then("I can see that all went alright!") do
-
   summary = @output.split("\n").reject{ |line| line.strip.empty? }.last
-  %r{\A \d+ \s+ examples?, \s+ 0 \s+ failures}x === summary
+  expect(summary).to match(%r{\A \d+ \s+ examples?, \s+ 0 \s+ failures}x)
+  expect(@status.to_i).to be_zero
 end
 
