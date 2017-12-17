@@ -15,3 +15,12 @@ Then("I can see that all went alright!") do
   expect(@status.to_i).to be_zero
 end
 
+Then("I can see {string}") do |failures|
+  expect(@output).to match(%r{^ \d+ \s+ examples?, \s+ #{failures}}x)
+end
+
+Then("an error of class {string} with a message matching {string} is reported") do |error, message|
+  expect(@output).to match(%r{#{error}:\s*#{message}})
+end
+
+
