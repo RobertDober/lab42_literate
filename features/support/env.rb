@@ -1,10 +1,7 @@
-unless ENV["NO_RCOV"]
-  require 'simplecov'
-  SimpleCov.start
-end
-
+require 'simplecov'
 PROJECT_HOME = File.expand_path('../../..', __FILE__)
-
-def spec_path file
-  File.join(PROJECT_HOME, 'spec', file.sub(%r{(?:_spec\.rb)?\z}, '_spec.rb'))
+SimpleCov.start do
+  SimpleCov.root(PROJECT_HOME)
+  track_files "lib/**/*.rb"
 end
+

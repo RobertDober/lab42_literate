@@ -19,9 +19,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'cucumber', '~> 3.1' 
   s.add_development_dependency 'rspec-expectations', '~> 3.7' 
   s.add_development_dependency 'pry', '~> 0.11'
+  s.add_development_dependency 'pry-doc', '~> 0.11'
   s.add_development_dependency 'pry-byebug', '~> 3.5'
 
-  s.add_development_dependency 'simplecov', '~> 0.15'
+  # s.add_development_dependency 'simplecov', '~> 0.15' --> Gemfile
   s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
 
   s.add_development_dependency 'travis-lint', '~> 2.0'

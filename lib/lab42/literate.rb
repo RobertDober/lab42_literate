@@ -1,5 +1,3 @@
-require 'rspec' unless defined? RSpec
-
 module Lab42
   module Literate
     require_relative 'literate/example_doctest'
