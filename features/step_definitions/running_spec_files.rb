@@ -23,4 +23,18 @@ Then("an error of class {string} with a message matching {string} is reported") 
   expect(@output).to match(%r{#{error}:\s*#{message}})
 end
 
+Then("no specs were run") do
+  expect(@output).to match(%r{0 \s+ examples, \s+ 0 \s+ failures \s* \z}x)
+end
 
+Then("it executes {int} examples") do |n|
+  expect(@output).to match(%r{#{n} \s+ examples?,}x)
+end
+
+Then("the output contains {string}") do |string|
+  expect(@output).to include(string)
+end
+
+Then("the output matches {string}") do |string|
+  expect(@output).to match(%r{#{string}}x)
+end

@@ -6,3 +6,8 @@ module Support
     end
   end
 end
+
+RSpec.configure do |conf|
+  conf.include Support::Fixtures, type: :literate
+  conf.extend Support::Fixtures, type: :literate
+end

@@ -14,14 +14,18 @@
 #
 # sEE http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-# require 'simplecov'
-# SimpleCov.start
+if ENV["USE_SIMPLECOV"]
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter 'spec/'
+  end
+end
 
 
 require 'lab42/literate'
 
 PROJECT_ROOT = File.expand_path "../..", __FILE__
-Dir[File.join(PROJECT_ROOT,"spec/support/**/*.rb")].each {|f| require fh }
+Dir[File.join(PROJECT_ROOT,"spec/support/**/*.rb")].each {|f| require f }
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
