@@ -11,3 +11,37 @@
 
 Just extract code blocks from any file, and run them as specs with a simple `doctest file` in an RSpec example group.
 
+### Installation
+
+      gem install lab42_literate
+
+or in Gemfile
+
+      gem 'lab42_literate'
+
+Then in your `spec_helper`
+
+      require 'lab42/literate'
+
+which makes the `doctest` method available in all example groupes of type `literate`.
+
+### Example
+
+You can write RSpec example code inside a ` ```ruby literate ` block. 
+
+        ```ruby literate
+          expect(%w{a b c}).not_to be_empty
+        ```
+
+There is an easy way to express `expect(...).to eq(...)` with the following special form...
+
+        ```ruby literate
+          1 + 41 #=> 42
+        ```
+
+Then, assuming the above text being inside a file `some_literate.md` one can execute the two examples above
+with
+
+        RSpec.describe 'example', type: :literate do
+          doctest 'some_literate.md'
+        end
