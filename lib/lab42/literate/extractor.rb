@@ -19,7 +19,6 @@ module Lab42::Literate::Extractor extend self
   # Potentially convert alternate equality syntax to class equality synatx, meaning that
   # \A(.*)\s+#=>\s+(.*)\z => expect(strip($1)).to eq(strip($2))
   def convert line
-    p line
     line.chomp.sub(ALTERNATE_EQ_FORM){ |*| 
       %W{#{$1}expect(#{$2}).to eq(#{$3.strip})}.join(' ') }
   end
