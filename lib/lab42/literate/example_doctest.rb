@@ -7,8 +7,6 @@ module Lab42::Literate::ExampleDoctest
     doc_blocks.each do  |_, lines|
       instance_eval(lines.join("\n"))
     end
-
-
   end
   
 end

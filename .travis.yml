@@ -11,4 +11,5 @@ install:
   - bundle install
 script: 
   - bundle exec cucumber
+  - USE_SIMPLECOV= bundle exec rspec spec/for_rspec
   - CODECLIMATE_REPO_TOKEN=${CODECLIMATE_LAB42LITERATE_TOKEN} bundle exec codeclimate-test-reporter
