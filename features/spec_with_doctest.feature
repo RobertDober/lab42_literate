@@ -25,3 +25,11 @@ Feature: Doctest
     When I run it with option "-f doc"
     Then I can see that all went alright!
     And the output contains "explicit example title" 
+
+
+  Scenario: Doctest with setup
+    Given the spec_file named "doctest_with_setup"
+    When I run it
+    Then it executes 1 example
+    And I can see that all went alright!
+

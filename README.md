@@ -49,14 +49,44 @@ with
 
 ### How does it work?
 
-Each block ` ```ruby literate`  creates an example with title `"literate block in #{file}:#{start_lnb}..#{end_lnb}"`
-and instance_evals the lines from the block in the example's context.
+Each block ` ```ruby literate`  creates an example group with title `"literate block in #{file}:#{start_lnb}..#{end_lnb}"`.
+
+Then an anonymous example `it do ...` 
+and instance_evals the lines from the block in this example's context.
 
 
 ### Setup?
 
-Not yet.
+Not yet in the literate file.
 
-### Explicit Title of the generated example
+However you can setup your code around the call of `doctest` 
+
+Given this literate file
+
+      ```ruby literate
+          foo.reverse #=> 'oof'
+      ```
+
+will perfectly work if you setup your spec as follows
+
+```ruby
+    RSpec.describe 'FOO', type: :literate do
+      let(:foo){ 'foo' }
+      doctest('literate_file.md')
+    end
+```
+
+
+
+### Explicit Title of the generated Example Group
 
 Just add text  after ` ```ruby literate`
+
+E.g.
+
+      ```ruby literate Assure errors are empty
+
+          ...
+          expect(errors).to be_empty
+          
+      ```

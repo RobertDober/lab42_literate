@@ -31,6 +31,9 @@ Then("no specs were run") do
   expect(@output).to match(%r{0 \s+ examples, \s+ 0 \s+ failures \s* \z}x)
 end
 
+Then("it executes {int} example") do |n|
+  step("it executes #{n} examples")
+end
 Then("it executes {int} examples") do |n|
   expect(@output).to match(%r{#{n} \s+ examples?,}x)
 end
