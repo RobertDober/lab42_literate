@@ -7,7 +7,17 @@
 [![Issue Count](https://codeclimate.com/github/RobertDober/lab42_literate/badges/issue_count.svg)](https://codeclimate.com/github/RobertDober/lab42_literate)
 [![Test Coverage](https://codeclimate.com/github/RobertDober/lab42_literate/badges/coverage.svg)](https://codeclimate.com/github/RobertDober/lab42_literate)
 
-## Literate Programming à la doctest.
+## Literate Programming à la doctest in Elxir.
+
+[Elixir Doctest](https://elixir-lang.org/getting-started/mix-otp/docs-tests-and-with.html#doctests)  has inspired this gem.
+
+Of course Elixir doctests from the metadata of a compiled elixir source (beam).
+
+As in Ruby we do not have any metadata this works with simple text extraction and evalutaion.
+
+This gives us however the possibility to write our doctests in **any** file and allows you
+to assure that your `README.md` code examples are **all correct**.
+
 
 Just extract code blocks from any file, and run them as specs with a simple `doctest file` in an RSpec example group.
 

@@ -3,8 +3,9 @@ module Lab42::Literate::GroupDoctest
   Ex = Lab42::Literate::Extractor
 
   def doctest filename
-    doc_blocks = Ex.extract(File.readlines(filename))
-    doc_blocks.each{ |block| make_context filename, block }
+    Ex
+      .extract(File.readlines(filename))
+     .each{ |block| make_context filename, block }
   end
 
   private
