@@ -4,8 +4,8 @@ module Lab42::Literate::ExampleDoctest
 
   def doctest filename
     doc_blocks = Ex.extract(File.readlines(filename))
-    doc_blocks.each do  |_, lines|
-      instance_eval(lines.join("\n"))
+    doc_blocks.each do  |block|
+      instance_eval(block.lines.join("\n"))
     end
   end
   

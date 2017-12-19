@@ -5,7 +5,11 @@ Given("the spec_file named {string}") do |string|
 end
 
 When("I run it") do
-  @output = %x{bundle exec rspec --no-color #{@the_spec_file}}
+  step('I run it with option ""')
+end
+
+When("I run it with option {string}") do |option|
+  @output = %x{bundle exec rspec --no-color #{option} #{@the_spec_file}}
   @status = $?
 end
 
@@ -38,3 +42,4 @@ end
 Then("the output matches {string}") do |string|
   expect(@output).to match(%r{#{string}}x)
 end
+

@@ -25,9 +25,9 @@ Then in your `spec_helper`
 
 which makes the `doctest` method available in all example groupes of type `literate`.
 
-### Example
+### Very Quick Start
 
-You can write RSpec example code inside a ` ```ruby literate ` block. 
+You can write RSpec example code inside a ` ```ruby literate ` block.
 
         ```ruby literate
           expect(%w{a b c}).not_to be_empty
@@ -45,3 +45,18 @@ with
         RSpec.describe 'example', type: :literate do
           doctest 'some_literate.md'
         end
+
+
+### How does it work?
+
+Each block ` ```ruby literate`  creates an example with title `"literate block in #{file}:#{start_lnb}..#{end_lnb}"`
+and instance_evals the lines from the block in the example's context.
+
+
+### Setup?
+
+Not yet.
+
+### Explicit Title of the generated example
+
+Just add text  after ` ```ruby literate`

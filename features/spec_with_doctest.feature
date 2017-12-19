@@ -19,3 +19,9 @@ Feature: Doctest
     When I run it
     Then it executes 4 examples
     And I can see "3 \s failures"
+
+  Scenario: Doctest with an explicit title
+    Given the spec_file named "doctest_with_title"
+    When I run it with option "-f doc"
+    Then I can see that all went alright!
+    And the output contains "explicit example title" 

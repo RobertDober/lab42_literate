@@ -1,16 +1,20 @@
-module Lab42::Literate::Extractor extend self
+require 'ostruct'
 
-  START_EXTRACTION = %r[\A \s* ``` ruby \s+ literate ]x
+module Lab42::Literate::Extractor extend self
+  require_relative 'extractor/block'
+
+
+  START_EXTRACTION = %r[\A \s* ``` ruby \s+ literate \s* (?<explicit_title> .*) ]x
   STOP_EXTRACTION  = %r[\A \s* ``` \s* \z]x
 
   ALTERNATE_EQ_FORM = %r[\A (\s*) (.*) \s+ \#=> \s+ (.*) \z]x
 
   def extract from_lines
-    hash = Hash.new{|h, k| h[k] =[]}
+    initial = OpenStruct.new(state: :outside, blocks: []) 
     from_lines
       .each_with_index
-      .inject([:outside, 0,  hash]){|state, (line, lnb)| update(line, lnb, *state) }
-      .last
+      .inject(initial){|acc, (line, lnb)| update(line, lnb, acc) }
+      .blocks
   end
 
 
@@ -23,28 +27,33 @@ module Lab42::Literate::Extractor extend self
       %W{#{$1}expect(#{$2}).to eq(#{$3.strip})}.join(' ') }
   end
 
-  def update line, lnb, state, last_lnb, blocks
-    if state == :outside
-      update_outside line, lnb, blocks
+  def update line, lnb, acc
+    if acc.state == :outside
+      update_outside line, lnb, acc
     else
-      update_inside line, last_lnb, blocks
+      update_inside line, acc
     end
   end
 
-  def update_inside line, last_lnb,  blocks
+  def update_inside line, acc
     if STOP_EXTRACTION === line.chomp
-      [:outside, nil, blocks]
+      merge_acc( acc, state: :outside )
     else
-      [:inside, last_lnb, blocks.merge(last_lnb => blocks[last_lnb] << convert(line))]
+      acc.blocks.last.add_line(convert(line))
+      acc
     end
   end
 
-  def update_outside line, lnb, blocks
-    if START_EXTRACTION === line.chomp
-      [:inside, lnb, blocks]
+  def update_outside line, lnb, acc
+    match = START_EXTRACTION.match line.chomp
+    if match 
+      merge_acc( acc, state: :inside, blocks: acc.blocks << Block.new(lnb, title: match['explicit_title']) )
     else
-      [:outside, nil, blocks]
+      acc
     end
   end
-  
+
+  def merge_acc acc, **params
+    OpenStruct.new(**(acc.to_h.merge params))
+  end
 end

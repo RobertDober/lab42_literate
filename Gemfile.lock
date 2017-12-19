@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lab42_literate (0.0.1)
+    lab42_literate (0.1.2)
       rspec (~> 3.7)
 
 GEM

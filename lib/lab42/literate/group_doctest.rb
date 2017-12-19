@@ -4,11 +4,17 @@ module Lab42::Literate::GroupDoctest
 
   def doctest filename
     doc_blocks = Ex.extract(File.readlines(filename))
-    doc_blocks.each do  |lnb, lines|
-      context "literate block in #{filename}:#{lnb}..#{lnb+lines.size-1}" do
-        it do
-          eval(lines.join("\n"))
-        end
+    doc_blocks.each{ |block| make_context filename, block }
+  end
+
+  private
+
+  def make_context filename, block
+    return if block.lines.empty?
+    title = block.get_title "literate block in #{filename}:#{block.range.inspect}"
+    context title do
+      it do
+        eval(block.lines.join("\n"))
       end
     end
   end
