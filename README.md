@@ -111,6 +111,9 @@ succeed
     ```
 
 
+**N.B.** It follows from this behaviour that one cannot put a `Given do ... end`  and code to be exceuted inside the
+generated examples into the same ` ```ruby literate ` block.
+
 
 ### Explicit Title of the generated Example Group
 
