@@ -1,12 +1,14 @@
 PATH
   remote: .
   specs:
-    lab42_literate (0.1.2)
+    lab42_literate (0.1.3)
+      parser (~> 2.4)
       rspec (~> 3.7)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.3.0)
     backports (3.10.3)
     builder (3.2.3)
     byebug (9.1.0)
@@ -36,6 +38,8 @@ GEM
     method_source (0.9.0)
     multi_json (1.12.2)
     multi_test (0.1.2)
+    parser (2.4.0.2)
+      ast (~> 2.3)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)

@@ -67,9 +67,9 @@ and instance_evals the lines from the block in this example's context.
 
 ### Setup?
 
-Not yet in the literate file.
 
-However you can setup your code around the call of `doctest` 
+#### Inside the spec calling `doctest`
+
 
 Given this literate file
 
@@ -87,6 +87,30 @@ will perfectly work if you setup your spec as follows
 ```
 
 
+#### Inside the literal file itself
+
+All literate blocks containing a  `Given` block inside the document will be
+executed in the context in which `doctest` has been called, **before** the
+example blocks will be generated, thusly the following literate file will
+succeed
+
+    ```ruby literate
+        Given do
+          let(:a){ 1 }
+        end
+    ```
+    
+    ```ruby literate
+        a + b #=> 42
+    ```
+
+    ```ruby literate
+        Given do
+          let(:b){ 41 }
+        end
+    ```
+
+
 
 ### Explicit Title of the generated Example Group
 
@@ -100,3 +124,11 @@ E.g.
           expect(errors).to be_empty
           
       ```
+
+### Calling `doctest` inside an Example
+
+Will be deprecated.
+
+Does not support all features.
+
+Use at own risk.
